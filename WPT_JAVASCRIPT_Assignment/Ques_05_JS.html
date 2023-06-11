@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script>
+            function table(){
+                var a=parseInt(document.getElementById("num").value);
+                var i=1;
+                while(i<=10){
+                    // alert(a+" "+i);
+                    document.getElementById("mydiv").innerHTML+=a+" * "+i+" = "+i*a+"<br>";
+                    i++;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        To Find the table of Given Number:</br></br>
+        <label for="num">Enter number:</label>
+        <input type="text" name="num" id="num" required/>
+        <button type="button" onclick="table()">Fraction</button></br></br>
+        Here is the Table:</br>
+        <div id="mydiv"></div>
+    </body>
+</html>
