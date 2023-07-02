@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation Example</title>
+  <style>
+    .error-message {
+      color: red;
+    }
+  </style>
+  <script>
+    function validateForm() {
+      var id = document.getElementById('id').value;
+      var name = document.getElementById('name').value;
+      var date = document.getElementById('date').value;
+      var email = document.getElementById('email').value;
+
+      var isValid = true;
+
+      // Validate ID
+      var idError = document.getElementById('id-error');
+      if (id.trim() === '') {
+        idError.innerHTML = 'ID cannot be empty';
+        isValid = false;
+      }else if (!/^\d+$/.test(id)) {
+        idError.innerHTML = 'ID must contain only numbers';
+        isValid = false;
+      }  else {
+        idError.innerHTML = '';
+      }
+
+      // Validate Name
+      var nameError = document.getElementById('name-error');
+      if (name.trim() === '') {
+        nameError.innerHTML = 'Name cannot be empty';
+        isValid = false;
+      } else {
+        nameError.innerHTML = '';
+      }
+
+      // Validate Date
+      var dateError = document.getElementById('date-error');
+      if (date.trim() === '') {
+        dateError.innerHTML = 'Date cannot be empty';
+        isValid = false;
+      } else {
+        dateError.innerHTML = '';
+      }
+
+      // Validate Email
+       var emailError = document.getElementById('emailerr');
+var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (email.trim() === '') {
+  emailError.innerHTML = 'Email cannot be empty';
+  isValid = false;
+} else if (!emailRegex.test(email)) {
+  emailError.innerHTML = 'Invalid email format';
+  isValid = false;
+} else {
+  emailError.innerHTML = '';
+}
+
+      // Submit the form if all validations pass
+      if(isValid)
+      document.getElementById('mydiv').innerHTML='id:'+id+'<br/>Name:'+name+'<br/>date: '+date+'<br/>Email:'+email;
+     
+    }
+  </script>
+  <style>
+    span{
+        color: red;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Form Validation Example</h1>
+  <form >
+    <table>
+        <tr>
+    <td><label for="id">ID:</label></td>
+    <td><input type="text" id="id" name="id" >
+    <span>*</span><span id="id-error" class="error-message"></span>
+</td>
+</tr>
+<tr>
+    <td><label for="name">Name:</label></td>
+    <td><input type="text" id="name" name="name" > 
+        <span>*</span><span id="name-error" class="error-message"></span>
+</td>
+</tr>
+    <td><label for="date">Date:</label></td>
+    <td><input type="date" id="date" name="date" >
+        <span>*</span><span id="date-error" class="error-message"></span>
+</td>
+    <tr>
+    <td><label for="email">Email:</label></td>
+    <td><input type="email" id="email" name="email" >
+        <span>*</span><span id="email-error" class="error-message"></span>
+</td>
+</tr><tr >
+   <td></td> <td ><input type="button" value="Submit" onclick="validateForm()" style="color: black;background-color: aqua;"></td>
+</tr>
+</table>
+    <div id="mydiv"></div>
+
+  </form>
+</body>
+</html>
