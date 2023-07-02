@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        validD=()=>{
+            var id=document.getElementById('id').value;
+            var name=document.getElementById('nm').value;
+            var email=document.getElementById('email').value;
+            var bdate=document.getElementById('bdate').value;
+            var sdate=document.getElementById('sdate').value;
+
+            var isValid=true;
+
+            //valid id
+           var idError=document.getElementById('iderr')
+           if(id.trim()===''){
+            idError.innerHTML='ID cannot be Empty';
+            isValid=false;
+           }else if(!/^\d+$/.test(id)){
+            idError.innerHTML='Id only contains number';
+            isValid=false;
+           }
+           else{
+            idError.innerHTML='';
+           }
+
+           //valid name
+           var nmError=document.getElementById('nmerr')
+           if(name.trim()===''){
+            nmError.innerHTML='name cannot be empty';
+            isValid=false;
+           }else if(name.length<3){
+            nmError.innerHTML='name must be greter than 3';
+            isValid=false;
+           }else{
+            nmError.innerHTML='';
+           }
+
+           //validate email
+           var emailError=document.getElementById('emailerr');
+           var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+           if(email.trim()===''){
+            emailError.innerHTML='Email cannot be empty';
+            isValid=false;
+           }else if (!emailRegex.test(email)) {
+        emailError.innerHTML = 'Invalid email format';
+        isValid = false;
+      }else{
+            emailError.innerHTML='';
+           }
+
+           //validate date
+           var bError=document.getElementById('berr');
+           var sError=document.getElementById('serr');
+
+           var bilobj = new Date(bdate);
+           var shipobj = new Date(sdate);
+        
+           if(bdate.trim()===''){
+                bError.innerHTML='billing cannot be empty'
+           }
+           else{
+            bError.innerHTML='';
+           }
+         if(sdate.trim()===''){
+                sError.innerHTML='shipping cannot be empty'
+         }
+           else if(bilobj>shipobj){
+            bError.innerHTML='Billing date must before shipping date';
+            sError.innerHTML='Billing date must before shipping date';
+           }
+           else{
+            bError.innerHTML='';
+            sError.innerHTML='';
+           }
+        }
+    </script>
+</head>
+<body>
+    <form action="fr">
+        <table>
+            <tr>
+                <td>Order Id:</td>
+                <td><input type="text" id="id">
+                <span>*</span><span id="iderr"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><input type="text" id="nm">
+                <span>*</span><span id="nmerr"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" id="email">
+                <span>*</span><span id="emailerr"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Billing Date:</td>
+                <td><input type="date" id="bdate">
+                <span>*</span><span id="berr"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Shiping Date:</td>
+                <td><input type="date" id="sdate" min="2023-05-20" max="2023-06-15">
+                <span>*</span><span id="serr"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" value="Submit" id="btn" onclick="validD()"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
